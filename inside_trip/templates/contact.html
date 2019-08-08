@@ -2,15 +2,20 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
+<div class="container-fluid">
+    <h2 class="mt-4">{{ title }}.</h2>
 
-<address>
-https://github.com/psw7205/inside-trip
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:psw7205@gmail.com">psw7205@gmail.com</a>
-</address>
+    <address>
+        <div>
+            <strong>Github:</strong><a href="https://github.com/psw7205/inside-trip">
+                <i class="fa fa-github">https://github.com/psw7205/inside-trip</i>
+            </a>
+        </div>
+        <div>
+            <strong>Support:</strong>
+            <a href="mailto:psw7205@gmail.com">psw7205@gmail.com</a>
+        </div>
+    </address>
+</div>
 
 {% endblock %}

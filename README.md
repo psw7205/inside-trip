@@ -1,11 +1,15 @@
 # inside-trip
+
+	pip install -r requirements.txt # requirements.txt에서 패키지 설치
+	pip freeze > requirements.txt # requirements.txt 파일 생성
+--- 
 국민여행조사 분석 서비스
 
 
-0) 팀장 정하기 - 박상우
-1) 조이름 정하기:  inside trip
+1) 팀장 정하기 - 박상우
+2) 조이름 정하기:  inside trip
 
-2) 주제 정하기
+3) 주제 정하기
 	국내여행 추천
 		- 가성비
 		- 계절
@@ -26,3 +30,6 @@
 	06~09 kosis/openapi, 데이터 분석
 	12~14 개발
 	19~21 발표자료 정리
+
+---
+

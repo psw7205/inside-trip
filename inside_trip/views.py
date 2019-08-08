@@ -6,6 +6,7 @@ from datetime import datetime
 from flask import render_template
 from inside_trip import app
 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -16,15 +17,16 @@ def home():
         year=datetime.now().year,
     )
 
+
 @app.route('/contact')
 def contact():
     """Renders the contact page."""
     return render_template(
         'contact.html',
         title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
+        year=datetime.now().year
     )
+
 
 @app.route('/about')
 def about():
@@ -32,6 +34,24 @@ def about():
     return render_template(
         'about.html',
         title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
+        year=datetime.now().year
     )
+
+
+@app.route('/home/<category>')
+def category(category):
+    if category == 'weather':
+        return render_template(
+            'weather.html',
+            title='날씨별 추천 정보'
+        )
+    elif category == 'age':
+        return render_template(
+            'age.html',
+            title='나이별 추천 정보'
+        )
+    elif category == 'cost':
+        return render_template(
+            'cost.html',
+            title='가성비 추천 정보'
+        )

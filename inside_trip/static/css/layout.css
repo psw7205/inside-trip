@@ -4,9 +4,13 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
-
 body {
     overflow-x: hidden;
+}
+
+.list-group,
+#project-member {
+    display: inline-block;
 }
 
 .footer {
@@ -17,7 +21,7 @@ body {
 #sidebar-wrapper {
     color: white;
     border-right-color: #343a40 !important;
-    min-height: 92vh;
+    min-height: 93vh;
     margin-left: -10rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;

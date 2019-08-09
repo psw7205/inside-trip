@@ -6,20 +6,22 @@ from datetime import datetime
 from flask import render_template
 from inside_trip import app
 import inside_trip.plot as p
+from jinja2 import Markup
 
 year = datetime.now().year
-
-p.make_sin_cos()
 
 
 @app.route('/')
 @app.route('/home')
 def home():
     """Renders the home page."""
+    folium_html_tag = Markup(p.folium_test())
     return render_template(
         'index.html',
         title='INSIDE TRIP',
         year=year,
+        img=p.make_sin_cos(),
+        map=folium_html_tag
     )
 
 
@@ -35,7 +37,6 @@ def contact():
 
 @app.route('/about')
 def about():
-    """Renders the about page."""
     return render_template(
         'about.html',
         title='About',
@@ -43,23 +44,28 @@ def about():
     )
 
 
-@app.route('/home/<category>')
-def category(category):
-    if category == 'weather':
-        return render_template(
-            'weather.html',
-            title='날씨별 추천 정보',
-            year=year
-        )
-    elif category == 'age':
-        return render_template(
-            'age.html',
-            title='나이별 추천 정보',
-            year=year
-        )
-    elif category == 'cost':
-        return render_template(
-            'cost.html',
-            title='가성비 추천 정보',
-            year=year
-        )
+@app.route('/home/weather')
+def weather():
+    return render_template(
+        'weather.html',
+        title='날씨별 추천 정보',
+        year=year
+    )
+
+
+@app.route('/home/age')
+def age():
+    return render_template(
+        'age.html',
+        title='나이별 추천 정보',
+        year=year
+    )
+
+
+@app.route('/home/cost')
+def cost():
+    return render_template(
+        'cost.html',
+        title='가성비 추천 정보',
+        year=year
+    )

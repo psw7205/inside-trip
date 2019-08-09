@@ -2,46 +2,26 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    <h2 class="mt-4">{{ title }}.</h2>
-
-    <table class="table" id="project-member">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">이름</th>
-                <th scope="col" colspan="2"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">박상우</th>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">진소라</th>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">이정은</th>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <address>
-        <div>
-            <strong>Github:</strong><a href="https://github.com/psw7205/inside-trip">
+    <div class="container-fluid">
+        <h2 class="mt-4">{{ title }}.</h2>
+        <ul class="list-group">
+              <li class="list-group-item active">이름</li>
+            <li class="list-group-item">박상우</li>
+            <li class="list-group-item">진소라</li>
+            <li class="list-group-item">이정은</li>
+        </ul>
+        <br><br><br>
+        <address>
+            <div>
+                <strong>Github:</strong><a href="https://github.com/psw7205/inside-trip">
                 <i class="fa fa-github">https://github.com/psw7205/inside-trip</i>
             </a>
-        </div>
-        <div>
-            <strong>Support:</strong>
-            <a href="mailto:psw7205@gmail.com">psw7205@gmail.com</a>
-        </div>
-    </address>
-</div>
+            </div>
+            <div>
+                <strong>Support:</strong>
+                <a href="mailto:psw7205@gmail.com">psw7205@gmail.com</a>
+            </div>
+        </address>
+    </div>
 
 {% endblock %}

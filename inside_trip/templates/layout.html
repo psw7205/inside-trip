@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="../static/css/layout.css">
 </head>
 
@@ -16,20 +15,21 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-dark border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Inside Trip </div>
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">inside trip</div>
             <div class="list-group list-group-flush">
-                <a href="{{ url_for('home') }}" class="list-group-item list-group-item-action bg-dark">Main Page</a>
-                <a href="/home/cost" class="list-group-item list-group-item-action bg-dark">가성비</a>
-                <a href="/home/age" class="list-group-item list-group-item-action bg-dark">나이</a>
-                <a href="/home/weather" class="list-group-item list-group-item-action bg-dark">날씨</a>
+                <a href="{{ url_for('home') }}" class="list-group-item list-group-item-action bg-light">Main Page</a>
+                <a href="/home/cost" class="list-group-item list-group-item-action bg-light">가성비</a>
+                <a href="/home/age" class="list-group-item list-group-item-action bg-light">나이</a>
+                <a href="/home/weather" class="list-group-item list-group-item-action bg-light">날씨</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <button class="btn btn-outline-info" id="menu-toggle"><i class="fa fa-bars"></i></button>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -63,7 +63,7 @@
     <!-- /#wrapper -->
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3">
+    <footer class="footer mt-auto py-3 bg-light border-top">
         <!-- Copyright -->
         <div class="text-center">
             &copy; {{ year }} - inside trip/국민여행조사 분석 서비스
@@ -74,6 +74,8 @@
     <script src="../static/js/jquery-3.4.1.min.js"></script>
     <script src="../static/js/popper.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+    {#<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>#}
+
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();

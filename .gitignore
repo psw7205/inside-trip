@@ -126,3 +126,6 @@ dmypy.json
 .idea
 .vscode
 .vs
+temp
+chromedriver.exe
+.keep

@@ -5,7 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from inside_trip import app
-import inside_trip.plot as p
+import inside_trip.plot_test as p
 from jinja2 import Markup
 
 year = datetime.now().year
@@ -20,7 +20,8 @@ def home():
         'index.html',
         title='INSIDE TRIP',
         year=year,
-        img=p.make_sin_cos(),
+        img=p.test1(),
+        img2=p.test2(),
         map=folium_html_tag
     )
 
@@ -47,7 +48,8 @@ def about():
 @app.route('/home/weather')
 def weather():
     return render_template(
-        'weather.html',
+        'detail.html',
+        img=p.test1(),
         title='날씨별 추천 정보',
         year=year
     )
@@ -56,7 +58,7 @@ def weather():
 @app.route('/home/age')
 def age():
     return render_template(
-        'age.html',
+        'detail.html',
         title='나이별 추천 정보',
         year=year
     )
@@ -65,7 +67,7 @@ def age():
 @app.route('/home/cost')
 def cost():
     return render_template(
-        'cost.html',
+        'detail.html',
         title='가성비 추천 정보',
         year=year
     )

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <h2 class="mt-4">{{ title }}.</h2>
+    </div>
+
+    <div class="card">
+        <img src="data:image/png;base64,{{ img }}" width="100%">
+        <div class="card-body">
+            <h5 class="card-title">Matplotlib</h5>
+        </div>
+    </div>
+
+{% endblock %}

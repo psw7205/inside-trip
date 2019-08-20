@@ -8,11 +8,14 @@ body {
     overflow-x: hidden;
 }
 
+.dropdown-container {
+  display: none;
+}
+
 .list-group,
 #project-member {
     display: inline-block;
 }
-
 
 #sidebar-wrapper {
     min-height: 93vh;

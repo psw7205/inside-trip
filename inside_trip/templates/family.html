@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="jumbotron mt-4">
+            <h1 class="display">{{title}}</h1>
+            <div class="row">
+                <img src="data:image/png;base64,{{ img3 }}" width="50%" class="mt-4 col-md-5">
+                <p class="lead mt-4 col-md-7">도시별 만족도는 제주도가 가장 높은 만족도를 보이며 대전이 가장 낮은 만족도를 보입니다</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                소득구간에 따른 지역 만족도
+            </div>
+            <img src="data:image/png;base64,{{ img1 }}" width="100%">
+            <div class="card-body">
+                <p class="card-text"> 대체적으로 제주도에 대한 만족도는 높은 모습입니다</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                인원에 따른 지역 만족도
+            </div>
+            <img src="data:image/png;base64,{{ img2 }}" width="100%">
+            <div class="card-body">
+                <p class="card-text"> 4인가구와 3인가구의 만족도가 대체적으로 높고 비슷한 양상을 보입니다
+                    5인가구 이상은 특히 '울산' 에서 높은 만족도를 보입니다
+                    2인 가구는 '부산'을 제외한 남서지방에서 낮은 만족도를 보이며 특히 '충남' 에서 제일 낮은 만족도를 보입니다</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

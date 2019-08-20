@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="jumbotron mt-4">
+            <h1 class="display">{{ title }}</h1>
+        </div>
+
+        <div class="card-deck mb-4 mt-4">
+            <div class="card">
+                <img src="data:image/png;base64,{{ img1 }}" width="100%">
+                <div class="card-body">
+                    <h5 class="card-title">남/여 지역별 만족도</h5>
+                </div>
+            </div>
+            <div class="card">
+                <img src="data:image/png;base64,{{ img2 }}" width="100%">
+                <div class="card-body">
+                    <h5 class="card-title">연령대 별 만족도</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <img src="data:image/png;base64,{{ img3 }}" width="100%">
+            <div class="card-body">
+                <h5 class="card-title">직업 별 만족도</h5>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <img src="data:image/png;base64,{{ img4 }}" width="100%">
+            <div class="card-body">
+                <h5 class="card-title">소득 별 만족도</h5>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

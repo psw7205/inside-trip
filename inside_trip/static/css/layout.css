@@ -6,10 +6,11 @@
 
 body {
     overflow-x: hidden;
+    font-family: 'Do Hyeon', sans-serif;
 }
 
 .dropdown-container {
-  display: none;
+    display: none;
 }
 
 .list-group,

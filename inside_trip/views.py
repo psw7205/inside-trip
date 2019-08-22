@@ -4,6 +4,7 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template
+from jinja2 import Markup
 from inside_trip import app
 import inside_trip.db as d
 
@@ -14,9 +15,20 @@ satis_img1 = database.family_income()
 satis_img2 = database.family_population()
 satis_img3 = database.family_total()
 
-age_img1=database.popular_rank()
-age_img2=database.popular_age()
-age_img3=database.reason()
+age_img1 = database.popular_rank()
+age_img2 = database.popular_age()
+age_img3 = database.reason()
+
+alone_img1 = database.alone_male()
+alone_img2 = database.alone_age()
+alone_img3 = database.alone_job()
+alone_img4 = database.alone_income()
+
+home_ing1_2 = database.total_plot()
+home_img1 = database.geo_plot()
+home_map2 = Markup(database.jh_folium())
+home_img2 = database.jh_word()
+
 
 @app.route('/')
 @app.route('/home')
@@ -27,8 +39,10 @@ def home():
         'index.html',
         title='INSIDE TRIP',
         year=year,
-        img=database.popular_rank(),
-        img2=database.popular_age()
+        img1=home_img1,
+        img1_2=home_ing1_2,
+        map2=home_map2,
+        img2=home_img2
     )
 
 
@@ -74,6 +88,7 @@ def family():
         img3=satis_img3
     )
 
+
 @app.route('/home/alone')
 def alone():
     return render_template(
@@ -85,9 +100,3 @@ def alone():
         img3=alone_img3,
         img4=alone_img4
     )
-
-
-alone_img1 = database.alone_male()
-alone_img2 = database.alone_age()
-alone_img3 = database.alone_job()
-alone_img4 = database.alone_income()

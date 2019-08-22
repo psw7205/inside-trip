@@ -6,6 +6,11 @@ import base64
 import pandas as pd
 import seaborn as sns
 import sqlalchemy
+import folium
+import geopandas as gpd
+import operator
+import numpy as np
+from wordcloud import WordCloud, STOPWORDS
 
 
 class MyDB:
@@ -17,6 +22,13 @@ class MyDB:
                                               charset='utf8')
 
         self._db_cur = self._db_connection.cursor()
+        self.engine = sqlalchemy.create_engine(
+            "mysql+pymysql://test:0000@127.0.0.1:3306/inside_trip", encoding='utf8')
+
+        plt.rcParams["font.family"] = "NanumGothic"
+        plt.rcParams['axes.unicode_minus'] = False
+        self.text = open('./inside_trip/static/data/hashtag1500.txt',
+                         encoding='utf-8').read()
 
     def query(self, query, params):
         return self._db_cur.execute(query, params)
@@ -31,7 +43,6 @@ class MyDB:
         return temp
 
     def age_plot_config(self):
-        plt.rcParams["font.family"] = "D2Coding ligature"
         data = self.load_data('age')
         data = pd.DataFrame(list(data))
         data = data.set_index(0)
@@ -79,13 +90,7 @@ class MyDB:
         return self.draw_plot()
 
     def reason(self):
-        plt.rcParams["font.family"] = "Malgun Gothic"
-        plt.rcParams['axes.unicode_minus'] = False
-
-        engine = sqlalchemy.create_engine(
-            "mysql+pymysql://test:0000@localhost:3306/inside_trip", encoding='utf8')
-
-        conn = engine.connect()
+        conn = self.engine.connect()
 
         data_p = pd.read_sql_table('reason', conn)
         del data_p['index']
@@ -106,13 +111,8 @@ class MyDB:
         return self.draw_plot()
 
     def load_family_data(self):
-        plt.rcParams["font.family"] = "Malgun Gothic"
-        plt.rcParams['axes.unicode_minus'] = False
 
-        engine = sqlalchemy.create_engine(
-            "mysql+pymysql://test:0000@localhost:3306/inside_trip", encoding='utf8')
-
-        conn = engine.connect()
+        conn = self.engine.connect()
 
         return pd.read_sql_table('family_satis', conn)
 
@@ -177,7 +177,8 @@ class MyDB:
         familydata = self.load_family_data()
         plt.subplots()
         family_citysize = familydata[['지역', '대도시', '중소도시', '읍/면']]
-        family_citysize['종합만족도'] = family_citysize['대도시'] + family_citysize['중소도시'] + family_citysize['읍/면']
+        family_citysize['종합만족도'] = family_citysize['대도시'] + \
+            family_citysize['중소도시'] + family_citysize['읍/면']
 
         ax = sns.barplot(family_citysize['지역'], family_citysize['종합만족도'])
         ax.set(ylim=(11.5, 13))
@@ -185,12 +186,7 @@ class MyDB:
         return self.draw_plot()
 
     def load_alone_data(self):
-        plt.rcParams["font.family"] = "Malgun Gothic"
-        plt.rcParams['axes.unicode_minus'] = False
-
-        engine = sqlalchemy.create_engine(
-            "mysql+pymysql://test:0000@localhost:3306/inside_trip", encoding='utf8')
-        conn = engine.connect()
+        conn = self.engine.connect()
 
         return pd.read_sql_table('alone_satis', conn)
 
@@ -223,7 +219,8 @@ class MyDB:
 
     def alone_age(self):
         alonedata = self.load_alone_data()
-        alone_age = alonedata[['지역', '15~19세', '20대', '30대', '40대', '50대', '60대이상']]
+        alone_age = alonedata[['지역', '15~19세',
+                               '20대', '30대', '40대', '50대', '60대이상']]
         alone_age = alone_age.melt('지역', var_name='age', value_name='val')
         g = sns.FacetGrid(data=alone_age, hue='age', size=12)
         g.map(plt.plot, '지역', 'val').add_legend()
@@ -265,7 +262,110 @@ class MyDB:
         alone_income = alonedata[
             ['지역', '50만~100만원 미만', '100만~200만원 미만', '200만~300만원 미만', '300만~400만원 미만', '400만~500만원 미만', '500만~600만원 미만',
              '600만원 이상']]
-        alone_income = alone_income.melt('지역', var_name='income', value_name='val')
+        alone_income = alone_income.melt(
+            '지역', var_name='income', value_name='val')
         g = sns.FacetGrid(data=alone_income, hue='income', size=12)
         g.map(plt.plot, '지역', 'val').add_legend()
+        return self.draw_plot()
+
+    def jh_folium(self):
+        conn = self.engine.connect()
+
+        data = pd.read_sql_table('jh_location', conn)
+
+        jh_map = folium.Map(
+            location=[37.73538132106076, 126.95212549817748], zoom_start=14)
+
+        for n in data.index:
+            popup_name = data.loc[n, 'title'] + ' - ' + data.loc[n, 'location']
+            if pd.notnull(data['lat'][n]):
+                folium.Marker([data['lat'][n], data['lng'][n]],
+                              radius=15, color='#CD3181',
+                              popup=folium.Popup(
+                    popup_name, max_width=170, min_width=170),
+                    fill_color='#CD3181',
+                    fill=True).add_to(jh_map)
+
+        return jh_map._repr_html_()
+
+    def jh_word(self):
+
+        stopwords = set(STOPWORDS)
+        stopwords.add('여행')
+        stopwords.add('여행스타그램')
+        stopwords.add('계곡에서 여름')
+        stopwords.add('좋아요')
+        stopwords.add('여름휴가')
+        stopwords.add('여행에 미치다')
+        stopwords.add('일상')
+        stopwords.add('데일리')
+        stopwords.add('ootd')
+        stopwords.add('일상')
+        stopwords.add('여행에미치다')
+        stopwords.add('여름')
+        stopwords.add('travel')
+        stopwords.add('landscape')
+        stopwords.add('맞팔')
+        stopwords.add('selfie')
+        stopwords.add('daily')
+        stopwords.add('소통')
+        stopwords.add('국내여행')
+
+        # Generate a word cloud image
+        wordcloud = WordCloud(background_color="white", max_words=1000,
+                              stopwords=stopwords,
+                              font_path='C:/Windows/Fonts/NanumGothicBold.ttf',
+                              # font_path='/usr/share/fonts/truetype/nanum/NanumGothic.ttf',
+                              width=400, height=400).generate(self.text)
+
+        wordcloud.generate(self.text)
+        plt.figure(figsize=(20, 20))
+        plt.imshow(wordcloud)
+        plt.axis('off')
+
+        return self.draw_plot()
+
+    def geo_plot(self):
+        conn = self.engine.connect()
+        data = pd.read_sql_table('region', conn)
+        plt.xkcd()
+        korea = gpd.read_file('./inside_trip/static/data/skorea-provinces-geo.json')
+        loc = ['부산', '충북','충남','대구','대전','강원','광주','경기','경북','경남','인천','제주','전북','전남','서울','울산']
+        korea.index = loc
+        korea['name'] = loc
+        total = 0
+        for step in data['sum']:
+            total += step
+        total
+        data_result=pd.merge(korea,data,on='name')
+        data_result["sum"] = (data_result["name"]).map(str) +' : '+ ((data_result['sum']/total)).map('{:.2%}'.format)
+        plt.rcParams["font.family"] = "NanumGothic"
+        final_pic=data_result.plot(figsize=(20,20),linewidth=0.25, edgecolor='black', column='sum', cmap=plt.cm.Blues)
+
+        for index,row in data_result.iterrows():
+            xy=row['geometry'].centroid.coords[:]
+            xytext=row['geometry'].centroid.coords[:]
+            if row['name'] == '경기':
+                xytext[0]=tuple(map(operator.add, xytext[0], (0,-0.3)))
+                text=plt.annotate(row['sum'],xy=xy[0], xytext=xytext[0],  horizontalalignment='center',verticalalignment='top')
+            elif row['name'] == '인천':
+                xytext[0]=tuple(map(operator.add, xytext[0], (0.1,0.1)))
+                text=plt.annotate(row['sum'],xy=xy[0], xytext=xytext[0],  horizontalalignment='center',verticalalignment='bottom')
+            elif row['name'] == '충남':
+                xytext[0]=tuple(map(operator.add, xytext[0], (-0.5,0.2)))
+                text=plt.annotate(row['sum'],xy=xy[0], xytext=xytext[0],  horizontalalignment='center',verticalalignment='center_baseline')
+            else :
+                text=plt.annotate(row['sum'],xy=xy[0], xytext=xytext[0],  horizontalalignment='center',verticalalignment='center_baseline')
+            plt.axis('off')
+        
+        return self.draw_plot()
+
+    def total_plot(self):
+        conn = self.engine.connect()
+        data = pd.read_sql_table('region', conn)
+        data = data.sort_values('sum', ascending = False)
+        plt.figure(figsize = (10,10))
+        plt.title('전체 방문자 누적 순위')
+        sns.barplot(x=data['name'], y='sum', data=data, palette="Blues_d")
+
         return self.draw_plot()

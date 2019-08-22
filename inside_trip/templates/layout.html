@@ -6,103 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ title }}</title>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/layout.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
 </head>
 
 <body>
-<div class="d-flex" id="wrapper">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">inside trip</div>
+            <div class="list-group list-group-flush">
+                <a href="{{ url_for('home') }}" class="list-group-item list-group-item-action bg-light">Main Page</a>
+                <button class="list-group-item list-group-item-action bg-light dropdown-btn">만족도 조사
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a href="/home/family" class="list-group-item list-group-item-action bg-light"> - 단체여행</a>
+                    <a href="/home/alone" class="list-group-item list-group-item-action bg-light"> - 개인여행</a>
+                </div>
 
-    <!-- Sidebar -->
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">inside trip</div>
-        <div class="list-group list-group-flush">
-            <a href="{{ url_for('home') }}" class="list-group-item list-group-item-action bg-light">Main Page</a>
-            <button class="list-group-item list-group-item-action bg-light dropdown-btn">만족도 조사
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-container">
-                <a href="/home/family" class="list-group-item list-group-item-action bg-light"> - 단체여행</a>
-                <a href="/home/alone" class="list-group-item list-group-item-action bg-light"> - 개인여행</a>
+                <a href="/home/age" class="list-group-item list-group-item-action bg-light">선호도 조사</a>
             </div>
-
-            <a href="/home/age" class="list-group-item list-group-item-action bg-light">선호도 조사</a>
         </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn btn-outline-info" id="menu-toggle"><i class="fa fa-bars"></i></button>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-outline-info" id="menu-toggle"><i class="fa fa-bars"></i></button>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('home') }}">Home <span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('about') }}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('home') }}">Home <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-        <!-- /#page-content-wrapper -->
-        {% block content %}{% endblock %}
+            <!-- /#page-content-wrapper -->
+            {% block content %}{% endblock %}
+
+        </div>
 
     </div>
+    <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <!-- Copyright -->
+        <div class="text-center">
+            &copy; {{ year }} - inside trip/국민여행조사 분석 서비스
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    {#<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>#}
 
-<!-- Footer -->
-<footer class="footer mt-auto py-3 bg-light border-top">
-    <!-- Copyright -->
-    <div class="text-center">
-        &copy; {{ year }} - inside trip/국민여행조사 분석 서비스
-    </div>
-    <!-- Copyright -->
-</footer>
-<!-- Footer -->
-<script src="../static/js/jquery-3.4.1.min.js"></script>
-<script src="../static/js/popper.min.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-{#<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>#}
-
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
-
-    for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function () {
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
         });
-    }
-</script>
+
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
 
 </body>
 

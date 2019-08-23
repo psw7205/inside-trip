@@ -9,6 +9,11 @@ body {
     font-family: 'Do Hyeon', sans-serif;
 }
 
+.jumbotron {
+    background-color: #62cff8;
+    color: #ffffff
+}
+
 .dropdown-container {
     display: none;
 }

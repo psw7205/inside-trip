@@ -85,8 +85,10 @@ class MyDB:
         data = self.age_plot_config()
 
         data = data.iloc[:, 3:]
-        plt.figure(figsize=(16, 9))
-        data.plot(kind='barh', stacked='True')
+        plt.rcParams["figure.figsize"] = (14,4)
+        plt.figure(figsize = (50,100))
+        data.plot(y=data.columns, kind='barh',title='연령별 여행지 인기도', stacked='True', colormap = 'GnBu')
+
         return self.draw_plot()
 
     def reason(self):

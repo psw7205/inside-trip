@@ -3,16 +3,16 @@
 {% block content %}
 
 <div class="container">
-    <div class="jumbotron mt-4">
+    <div class="jumbotron mt-4 banner-l">
         <h1 class="display">{{ title }}</h1>
     </div>
 
     <div class="card-deck mb-4 mt-4">
         <div class="card">
+            <h5 class="card-header graph-title">남/여 지역별 만족도</h5>
             <img src="data:image/png;base64,{{ img1 }}" width="100%">
-            <div class="card-body">
-                <h5 class="card-title">남/여 지역별 만족도</h5>
-                <p class="card-text">
+            <div class="card-body graph-desc">
+                <p class="card-text lead">
                     <br>그래프를 보면 남자와 여자의 그래프는 서로 비슷한 양상을 보입니다
                     <br>상하위 3개지역도 거의 일치하는 것을 알 수 있고
                     이는 여자, 남자 성향에 따라 큰 차이없이 여행지에 대한 만족도는 비슷하다 판단할 수 있습니다.
@@ -22,10 +22,10 @@
             </div>
         </div>
         <div class="card">
+            <h5 class="card-header graph-title">연령대 별 만족도</h5>
             <img src="data:image/png;base64,{{ img2 }}" width="100%">
-            <div class="card-body">
-                <h5 class="card-title">연령대 별 만족도</h5>
-                <p class="card-text">
+            <div class="card-body graph-desc">
+                <p class="card-text lead">
                     <br> 연령대에 따른 지역 만족도는 대체적으로 비슷하나 15_19세, 30대는 유독 큰 폭으로 만족도가 진동하는 모습을 보였습니다.
                     <br> 30대는 대전, 충북 지역, 15-19세는 광주,충북,경남에서 유난히 낮은 만족도를 기록했습니다
                     <br> 즉, 혼자 여행을 다닐 때 30대는 대전,충북에서,
@@ -37,10 +37,10 @@
     </div>
 
     <div class="card mb-4">
+        <h5 class="card-header graph-title">직업 별 만족도</h5>
         <img src="data:image/png;base64,{{ img3 }}" width="100%">
-        <div class="card-body">
-            <h5 class="card-title">직업 별 만족도</h5>
-            <p class="card-text">
+        <div class="card-body graph-desc">
+            <p class="card-text lead">
                 서비스 판매 직종은 대체적으로 전 지역에서 만족도가 높고 농어업은 그 반대로 낮습니다
                 <br> <strong>전문관리</strong> 직종은 충북에서 제일 낮은 만족도, 울산에서 제일 높은 만족도를 보입니다
                 <br> <strong>사무</strong> 직종은 지역별 만족도가 큰 차이를 보이는데 특히 광주 지역에 매우 낮은 만족도, 제주에서는 매우 높은 만족도를 보입니다
@@ -52,10 +52,10 @@
     </div>
 
     <div class="card mb-4">
+        <h5 class="card-header graph-title">소득 별 만족도</h5>
         <img src="data:image/png;base64,{{ img4 }}" width="100%">
-        <div class="card-body">
-            <h5 class="card-title">소득 별 만족도</h5>
-            <p class="card-text">
+        <div class="card-body graph-desc">
+            <p class="card-text lead">
                 <br>개인소득이 100-200만원 구간을 제외한 나머지 구간들은 지역별로 비슷한 만족도를 보입니다
                 <br>대구,충북,대전,경북에서 대체적으로 만족도가 낮은데,
                 특히 소득 500-600만원 구간 만족도는 큰 진동을 보이며 제일 낮은 만족도를 기록했습니다

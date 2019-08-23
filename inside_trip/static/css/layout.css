@@ -9,6 +9,25 @@ body {
     font-family: 'Do Hyeon', sans-serif;
 }
 
+.banner-l {
+    background-color: #a2dfe0 !important;
+
+}
+
+.banner-l-desc {
+    color: #4f9377 !important;
+}
+
+.graph-title {
+    background-color: #4f9377 !important;
+    color: #ffffff !important;
+}
+
+.graph-desc {
+    background-color: #b4d9f0 !important;
+    color: #1e597e !important;
+}
+
 .jumbotron {
     background-color: #62cff8;
     color: #ffffff

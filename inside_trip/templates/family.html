@@ -3,12 +3,12 @@
 {% block content %}
 
 <div class="container">
-    <div class="jumbotron mt-4">
+    <div class="jumbotron mt-4  banner-l">
         <h1 class="display">{{title}}</h1>
         <h3>종합만족도</h3>
         <div class="row">
             <img src="data:image/png;base64,{{ img3 }}" width="50%" class="mt-4 col-md-5">
-            <p class="lead mt-4 col-md-7">
+            <p class="lead mt-4 col-md-7 banner-l-desc lead">
                 <br>
                 <br> 상위 3개 지역: 제주도,전남, 강원
                 <br> 하위 3개 지역: 대전,광주,충남
@@ -17,18 +17,17 @@
                 <br>
                 <br> 앞선 소득구간, 인원 수에 따른 결과와도 비슷한 결과를 보인다
                 <br> 이는 단체여행객들이 대부분 제주도,강원,전남은만족도가 높고, 대전,광주,충남에서는 만족도가 낮다고 볼 판단할 수 있습니다
-                * 각 지역단위간에 만족도 차이가 크게 보이지 않기 때문에 각각의 만족도를 종합 후 평균을 내어 지역에 대한 종합만족도라 평가했습니다
-
+                <br> * 각 지역단위간에 만족도 차이가 크게 보이지 않기 때문에 각각의 만족도를 종합 후 평균을 내어 지역에 대한 종합만족도라 평가했습니다
             </p>
         </div>
     </div>
 
     <div class="card mb-4">
-        <div class="card-header">
+        <div class="card-header graph-title">
             소득구간에 따른 지역 만족도
         </div>
         <img src="data:image/png;base64,{{ img1 }}" width="100%">
-        <div class="card-body">
+        <div class="card-body graph-desc">
             <p class="card-text lead"> 각 소득구간의 상하위 3개 지역을 분석하여
                 만족도 1위인 지역은 제주도, 16위인 지역은 대전 임을 알 수 있습니다
                 <br> 특히 소득 200만-300만원 구간과 300만-400만원 구간의 지역별 만족도는 상반된 성향을 보여줌을 알 수 있었습니다
@@ -38,11 +37,11 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header">
+        <div class="card-header graph-title">
             인원에 따른 지역 만족도
         </div>
         <img src="data:image/png;base64,{{ img2 }}" width="100%">
-        <div class="card-body">
+        <div class="card-body graph-desc">
             <p class="card-text lead"> 단체인원별 상하위 3개 지역을 분석하여
                 만족도 1위인 지역은 제주도, 16위인 지역은 충남 임을 알 수 있습니다
                 <br> 단체인원별 막대그래프가 대체적으로 비슷한 양상을 보입니다

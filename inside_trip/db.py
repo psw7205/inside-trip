@@ -215,7 +215,6 @@ class MyDB:
 
         # decorations
         plt.xlabel('만족도')
-        plt.title('남/여 지역별 만족도 차이')
         plt.legend()
         return self.draw_plot()
 
@@ -224,7 +223,9 @@ class MyDB:
         alone_age = alonedata[['지역', '15~19세',
                                '20대', '30대', '40대', '50대', '60대이상']]
         alone_age = alone_age.melt('지역', var_name='age', value_name='val')
+        
         g = sns.FacetGrid(data=alone_age, hue='age', size=12)
+
         g.map(plt.plot, '지역', 'val').add_legend()
         return self.draw_plot()
 
